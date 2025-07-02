@@ -1,3 +1,5 @@
+import Login from "@/lib/components/Login";
+import Logout from "@/lib/components/Logout";
 import Link from "next/link";
 import React from "react";
 
@@ -12,6 +14,7 @@ export default async function Products() {
   }))
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 bg-gray-950 shadow-lg">
@@ -41,10 +44,17 @@ export default async function Products() {
                   <h2 className="text-lg font-bold text-yellow-400 mb-2 text-center">{product.title}</h2>
                   <p className="text-gray-300 text-sm text-center line-clamp-4">{product.description}</p>
                 </div>
+                {/* Logout button at the bottom, full width, styled */}
+            
               </div>
             </Link>
+
           ))}
         </div>
+        <div>
+          <Logout />
+        </div>
+
       </div>
     </div>
   )
