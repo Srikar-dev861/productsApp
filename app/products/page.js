@@ -6,7 +6,7 @@ import React from "react";
 export default async function Products() {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL)
   const data = await res.json()
-  const formattedData = data.map((item) => ({
+  const formattedData = data?.map((item) => ({
     id: item.id,
     title: item.title,
     description: item.description,
@@ -28,7 +28,7 @@ export default async function Products() {
       <div className="max-w-7xl mx-auto px-8 py-10">
         <h1 className="text-4xl font-bold text-white mb-8 text-center drop-shadow-lg">All Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {formattedData.map((product) => (
+          {formattedData?.map((product) => (
             <Link href={`/products/${product.id}`} key={product.id}>
               <div
                 className="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col items-center transition-transform hover:scale-105 cursor-pointer"

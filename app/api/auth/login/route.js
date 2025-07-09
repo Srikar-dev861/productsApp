@@ -1,5 +1,6 @@
 import { createJWT } from '@/lib/auth';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 
 export async function POST(req) {
@@ -10,10 +11,18 @@ export async function POST(req) {
         const res = NextResponse.json({message: "LoggedIn successful",email},{status:200});
         console.log(token,"Token")
 
-        res.cookies.set("newToken", token,{
-            httpOnly:true,
-            maxAge:60*60
-        });
+        // res.cookies.set("newToken", token,{
+        //     httpOnly:true,
+        //     secure:process.env.NODE_ENV==="production",
+        //     expires:60*60
+        // });
+    cookies().set('newToken', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 3600,
+    path: '/',
+});
+
 
             return res 
     }

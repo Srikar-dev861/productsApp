@@ -9,7 +9,7 @@ async function isPagesAPIRouteMatch(req){
         return false;
     }
     try{
-        const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
+        const SECRET_KEY = new TextEncoder().encode(process.env.SECRET_KEY);
         await jwtVerify(token,SECRET_KEY);
         return true;
     }catch(err){
